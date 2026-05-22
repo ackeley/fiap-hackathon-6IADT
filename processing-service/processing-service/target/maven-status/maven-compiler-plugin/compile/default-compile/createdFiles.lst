@@ -1,0 +1,9 @@
+br/com/fiap/processing_service/domain/model/AnalysisReport.class
+br/com/fiap/processing_service/ProcessingServiceApplication.class
+br/com/fiap/processing_service/infrastructure/messaging/AnalysisEventConsumer.class
+br/com/fiap/processing_service/infrastructure/messaging/ReportEventProducer.class
+br/com/fiap/processing_service/infrastructure/ai/AiAnalysisService.class
+br/com/fiap/processing_service/infrastructure/ai/GeminiAiAnalysisService.class
+br/com/fiap/processing_service/infrastructure/ai/MockAiAnalysisService.class
+br/com/fiap/processing_service/infrastructure/messaging/KafkaConfig.class
+br/com/fiap/processing_service/application/usecase/ProcessAnalysisUseCase.class

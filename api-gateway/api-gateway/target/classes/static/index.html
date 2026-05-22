@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIAP Secure Systems</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --bg: #0a0a0f;
+          --surface: #111118;
+          --border: #1e1e2e;
+          --accent: #00ff88;
+          --accent2: #0066ff;
+          --accent3: #ff3366;
+          --text: #e8e8f0;
+          --muted: #666680;
+          --card: #13131f;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; min-height: 100vh; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+        body::after { content: ''; position: fixed; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,102,255,0.08) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+        .orb2 { position: fixed; bottom: -200px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+        header { padding: 32px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 64px; }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 36px; height: 36px; border: 2px solid var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 14px; color: var(--accent); font-weight: 700; }
+        .logo-text { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+        .logo-text span { color: var(--text); }
+        .status-pill { display: flex; align-items: center; gap: 8px; background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); padding: 6px 14px; border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); }
+        .status-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero { text-align: center; margin-bottom: 72px; animation: fadeUp 0.8s ease both; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,102,255,0.08); border: 1px solid rgba(0,102,255,0.25); padding: 6px 16px; border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 11px; color: #6699ff; margin-bottom: 28px; letter-spacing: 0.08em; }
+        h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 20px; }
+        h1 .accent { color: var(--accent); }
+        .hero-sub { font-size: 18px; color: var(--muted); max-width: 500px; margin: 0 auto; line-height: 1.6; font-weight: 400; }
+        .upload-section { animation: fadeUp 0.8s 0.2s ease both; }
+        .upload-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 48px; position: relative; overflow: hidden; }
+        .upload-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.5; }
+        .drop-zone { border: 2px dashed var(--border); border-radius: 16px; padding: 56px 32px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: var(--surface); }
+        .drop-zone:hover { border-color: var(--accent); background: rgba(0,255,136,0.03); }
+        .drop-icon { font-size: 48px; margin-bottom: 16px; display: block; transition: all 0.3s ease; }
+        .drop-zone:hover .drop-icon { transform: translateY(-4px); }
+        .drop-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .drop-sub { font-size: 13px; color: var(--muted); font-family: 'Space Mono', monospace; }
+        .drop-sub span { color: var(--accent); }
+        .file-selected { display: none; align-items: center; gap: 12px; background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); border-radius: 12px; padding: 16px 20px; margin-top: 16px; }
+        .file-selected.show { display: flex; }
+        .file-name { font-weight: 600; font-size: 14px; color: var(--accent); }
+        .file-size { font-size: 12px; color: var(--muted); font-family: 'Space Mono', monospace; }
+        .btn-analyze { width: 100%; margin-top: 24px; padding: 18px; background: var(--accent); color: #000; border: none; border-radius: 12px; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; transition: all 0.3s ease; }
+        .btn-analyze:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,255,136,0.3); }
+        .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; }
+        .error-msg { display: none; margin-top: 16px; padding: 16px 20px; background: rgba(255,51,102,0.06); border: 1px solid rgba(255,51,102,0.2); border-radius: 12px; font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent3); }
+        .error-msg.show { display: block; }
+        .progress-section { display: none; margin-top: 32px; }
+        .progress-section.show { display: block; }
+        .steps { display: flex; margin-bottom: 24px; }
+        .step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .step:not(:last-child)::after { content: ''; position: absolute; top: 16px; left: 50%; right: -50%; height: 2px; background: var(--border); z-index: 0; }
+        .step.done:not(:last-child)::after { background: var(--accent); opacity: 0.4; }
+        .step-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); position: relative; z-index: 1; transition: all 0.3s ease; font-family: 'Space Mono', monospace; }
+        .step.active .step-dot { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 16px rgba(0,255,136,0.4); }
+        .step.done .step-dot { border-color: var(--accent); background: var(--accent); color: #000; }
+        .step-label { font-size: 11px; color: var(--muted); text-align: center; font-family: 'Space Mono', monospace; }
+        .step.active .step-label { color: var(--accent); }
+        .step.done .step-label { color: var(--text); }
+        .status-msg { text-align: center; font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted); padding: 12px; background: var(--surface); border-radius: 8px; border: 1px solid var(--border); }
+        .result-section { display: none; margin-top: 40px; animation: fadeUp 0.6s ease both; }
+        .result-section.show { display: block; }
+        .result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .result-title { font-size: 22px; font-weight: 700; }
+        .result-id { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); background: var(--surface); padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); }
+        .summary-card { background: linear-gradient(135deg, rgba(0,102,255,0.08), rgba(0,255,136,0.05)); border: 1px solid rgba(0,102,255,0.2); border-radius: 16px; padding: 24px; margin-bottom: 24px; font-size: 15px; line-height: 1.7; }
+        .summary-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #6699ff; text-transform: uppercase; margin-bottom: 10px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+        .result-card.components { border-top: 2px solid var(--accent2); }
+        .result-card.risks { border-top: 2px solid var(--accent3); }
+        .result-card.recommendations { border-top: 2px solid var(--accent); }
+        .card-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+        .card-label.components { color: #6699ff; }
+        .card-label.risks { color: var(--accent3); }
+        .card-label.recommendations { color: var(--accent); }
+        .tag-list { display: flex; flex-direction: column; gap: 8px; }
+        .tag { padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4; display: flex; align-items: flex-start; gap: 8px; }
+        .tag::before { content: '▸'; font-size: 10px; margin-top: 2px; flex-shrink: 0; }
+        .tag.component { background: rgba(0,102,255,0.06); color: #aabbff; }
+        .tag.component::before { color: #6699ff; }
+        .tag.risk { background: rgba(255,51,102,0.06); color: #ffaabb; }
+        .tag.risk::before { color: var(--accent3); }
+        .tag.recommendation { background: rgba(0,255,136,0.05); color: #aaffcc; }
+        .tag.recommendation::before { color: var(--accent); }
+        footer { margin-top: 80px; padding: 32px 0; border-top: 1px solid var(--border); text-align: center; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
+        footer span { color: var(--accent); }
+    </style>
+</head>
+<body>
+<div class="orb2"></div>
+<div class="container">
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">FS</div>
+                <div class="logo-text"><span>FIAP</span> SECURE SYSTEMS</div>
+            </div>
+            <div class="status-pill">
+                <div class="status-dot"></div>
+                SISTEMA ONLINE
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-tag">✦ POWERED BY GEMINI 2.5 FLASH</div>
+        <h1>Análise de<br><span class="accent">Arquitetura</span><br>com IA</h1>
+        <p class="hero-sub">Envie seu diagrama e receba uma análise técnica completa com componentes, riscos e recomendações.</p>
+    </div>
+
+    <div class="upload-section">
+        <div class="upload-card">
+            <div class="drop-zone" id="dropZone">
+                <span class="drop-icon">⬆</span>
+                <div class="drop-title">Arraste seu diagrama aqui</div>
+                <div class="drop-sub">ou clique para selecionar · <span>PNG, JPG, PDF</span> até 10MB</div>
+            </div>
+
+            <input type="file" id="fileInput" accept="image/*,.pdf" style="display:none">
+
+            <div class="file-selected" id="fileSelected">
+                <span>📄</span>
+                <div>
+                    <div class="file-name" id="fileName"></div>
+                    <div class="file-size" id="fileSize"></div>
+                </div>
+            </div>
+
+            <button class="btn-analyze" id="btnAnalyze" disabled onclick="analyze()">
+                ANALISAR DIAGRAMA
+            </button>
+
+            <div class="error-msg" id="errorMsg"></div>
+
+            <div class="progress-section" id="progressSection">
+                <div class="steps">
+                    <div class="step" id="step1"><div class="step-dot">01</div><div class="step-label">UPLOAD</div></div>
+                    <div class="step" id="step2"><div class="step-dot">02</div><div class="step-label">KAFKA</div></div>
+                    <div class="step" id="step3"><div class="step-dot">03</div><div class="step-label">IA</div></div>
+                    <div class="step" id="step4"><div class="step-dot">04</div><div class="step-label">RELATÓRIO</div></div>
+                </div>
+                <div class="status-msg" id="statusMsg">Iniciando análise...</div>
+            </div>
+
+            <div class="result-section" id="resultSection">
+                <div class="result-header">
+                    <div class="result-title">Relatório de Análise</div>
+                    <div class="result-id" id="resultId"></div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">✦ RESUMO EXECUTIVO</div>
+                    <div id="summaryText"></div>
+                </div>
+                <div class="grid-3">
+                    <div class="result-card components">
+                        <div class="card-label components">⬡ COMPONENTES</div>
+                        <div class="tag-list" id="componentsList"></div>
+                    </div>
+                    <div class="result-card risks">
+                        <div class="card-label risks">⚠ RISCOS</div>
+                        <div class="tag-list" id="risksList"></div>
+                    </div>
+                    <div class="result-card recommendations">
+                        <div class="card-label recommendations">✓ RECOMENDAÇÕES</div>
+                        <div class="tag-list" id="recommendationsList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        HACKATHON FIAP POSTECH · SOAT + IADT · <span>2026</span><br><br>
+        Ackeley RM366072 · Eduardo RM366322 · Leandro RM365755 · Thyago RM365858
+    </footer>
+</div>
+
+<script>
+    var selectedFile = null;
+    var analysisId = null;
+    var pollInterval = null;
+    var pollAttempts = 0;
+
+    var fileInput = document.getElementById('fileInput');
+    var dropZone = document.getElementById('dropZone');
+    var btnAnalyze = document.getElementById('btnAnalyze');
+
+    dropZone.addEventListener('click', function() { fileInput.click(); });
+    fileInput.addEventListener('change', function(e) { handleFile(e.target.files[0]); });
+
+    dropZone.addEventListener('dragover', function(e) { e.preventDefault(); dropZone.style.borderColor = '#00ff88'; });
+    dropZone.addEventListener('dragleave', function() { dropZone.style.borderColor = ''; });
+    dropZone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropZone.style.borderColor = '';
+      handleFile(e.dataTransfer.files[0]);
+    });
+
+    function handleFile(file) {
+      if (!file) return;
+      selectedFile = file;
+      document.getElementById('fileName').textContent = file.name;
+      document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
+      document.getElementById('fileSelected').classList.add('show');
+      btnAnalyze.disabled = false;
+      hideError();
+      document.getElementById('resultSection').classList.remove('show');
+      document.getElementById('progressSection').classList.remove('show');
+    }
+
+    function setStep(n) {
+      for (var i = 1; i <= 4; i++) {
+        var s = document.getElementById('step' + i);
+        s.classList.remove('active', 'done');
+        if (i < n) s.classList.add('done');
+        else if (i === n) s.classList.add('active');
+      }
+    }
+
+    function setStatus(msg) { document.getElementById('statusMsg').textContent = msg; }
+
+    function showError(msg) {
+      var el = document.getElementById('errorMsg');
+      el.textContent = '⚠ ' + msg;
+      el.classList.add('show');
+    }
+
+    function hideError() { document.getElementById('errorMsg').classList.remove('show'); }
+
+    function resetBtn() {
+      btnAnalyze.disabled = false;
+      btnAnalyze.textContent = 'ANALISAR DIAGRAMA';
+    }
+
+    function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+    async function analyze() {
+      if (!selectedFile) return;
+      hideError();
+      document.getElementById('resultSection').classList.remove('show');
+      pollAttempts = 0;
+
+      btnAnalyze.disabled = true;
+      btnAnalyze.textContent = 'ENVIANDO...';
+      document.getElementById('progressSection').classList.add('show');
+      setStep(1);
+      setStatus('Enviando diagrama...');
+
+      var formData = new FormData();
+      formData.append('file', selectedFile);
+
+      try {
+        var res = await fetch('/analyses', { method: 'POST', body: formData });
+        if (!res.ok) throw new Error('Falha no upload (HTTP ' + res.status + ')');
+        var data = await res.json();
+        analysisId = data.id;
+        document.getElementById('resultId').textContent = analysisId.substring(0, 8) + '...';
+
+        setStep(2);
+        setStatus('Evento publicado no Kafka...');
+        btnAnalyze.textContent = 'ANALISANDO...';
+        await sleep(2000);
+
+        setStep(3);
+        setStatus('IA Gemini analisando o diagrama...');
+        pollInterval = setInterval(pollReport, 4000);
+
+      } catch(e) {
+        showError(e.message);
+        resetBtn();
+      }
+    }
+
+    async function pollReport() {
+      pollAttempts++;
+      if (pollAttempts > 20) {
+        clearInterval(pollInterval);
+        showError('Tempo limite excedido. Tente novamente.');
+        resetBtn();
+        return;
+      }
+
+      try {
+        var res = await fetch('/reports/' + analysisId);
+        if (res.status === 404 || res.status === 500) return;
+        if (!res.ok) throw new Error('Erro ao buscar relatório');
+
+        var data = await res.json();
+        clearInterval(pollInterval);
+        setStep(4);
+        setStatus('Análise concluída com sucesso!');
+        showResult(data);
+        resetBtn();
+
+      } catch(e) {
+        clearInterval(pollInterval);
+        showError(e.message);
+        resetBtn();
+      }
+    }
+
+    function showResult(data) {
+      document.getElementById('summaryText').textContent = data.summary;
+
+      var compList = document.getElementById('componentsList');
+      compList.innerHTML = data.components.map(function(c) {
+        return '<div class="tag component">' + c + '</div>';
+      }).join('');
+
+      var riskList = document.getElementById('risksList');
+      riskList.innerHTML = data.risks.map(function(r) {
+        return '<div class="tag risk">' + r + '</div>';
+      }).join('');
+
+      var recList = document.getElementById('recommendationsList');
+      recList.innerHTML = data.recommendations.map(function(r) {
+        return '<div class="tag recommendation">' + r + '</div>';
+      }).join('');
+
+      document.getElementById('resultSection').classList.add('show');
+    }
+</script>
+</body>
+</html>

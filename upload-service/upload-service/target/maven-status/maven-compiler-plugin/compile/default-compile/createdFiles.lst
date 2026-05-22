@@ -1,0 +1,12 @@
+br/com/fiap/upload_service/adapters/controller/AnalysisController.class
+br/com/fiap/upload_service/infrastructure/messaging/AnalysisEventProducer.class
+br/com/fiap/upload_service/domain/entity/Analysis.class
+br/com/fiap/upload_service/infrastructure/messaging/KafkaProducerConfig.class
+br/com/fiap/upload_service/infrastructure/persistence/repository/AnalysisJpaRepository.class
+br/com/fiap/upload_service/domain/port/AnalysisRepository.class
+br/com/fiap/upload_service/application/usecase/CreateAnalysisUseCase.class
+br/com/fiap/upload_service/domain/entity/AnalysisStatus.class
+br/com/fiap/upload_service/UploadServiceApplication.class
+br/com/fiap/upload_service/adapters/dto/AnalysisResponseDTO.class
+br/com/fiap/upload_service/infrastructure/persistence/repository/AnalysisRepositoryImpl.class
+br/com/fiap/upload_service/infrastructure/persistence/entity/AnalysisJpaEntity.class

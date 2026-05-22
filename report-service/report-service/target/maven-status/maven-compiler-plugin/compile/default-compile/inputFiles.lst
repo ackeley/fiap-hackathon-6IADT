@@ -1,0 +1,12 @@
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/infrastructure/messaging/ReportEventConsumer.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/application/usecase/SaveReportUseCase.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/domain/port/ReportRepository.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/adapters/controller/ReportController.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/ReportServiceApplication.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/adapters/dto/ReportResponseDTO.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/infrastructure/persistence/ReportRepositoryImpl.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/infrastructure/persistence/ReportMongoRepository.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/infrastructure/messaging/KafkaConfig.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/domain/model/Report.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/infrastructure/persistence/ReportDocument.java
+/home/ackeley/Área de trabalho/hackathon-fiap/report-service/report-service/src/main/java/br/com/fiap/report_service/infrastructure/persistence/MongoConfig.java

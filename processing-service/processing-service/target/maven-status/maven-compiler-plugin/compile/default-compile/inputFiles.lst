@@ -1,0 +1,9 @@
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/infrastructure/ai/AiAnalysisService.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/infrastructure/ai/MockAiAnalysisService.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/application/usecase/ProcessAnalysisUseCase.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/domain/model/AnalysisReport.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/infrastructure/ai/GeminiAiAnalysisService.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/ProcessingServiceApplication.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/infrastructure/messaging/ReportEventProducer.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/infrastructure/messaging/AnalysisEventConsumer.java
+/home/ackeley/Área de trabalho/hackathon-fiap/processing-service/processing-service/src/main/java/br/com/fiap/processing_service/infrastructure/messaging/KafkaConfig.java

@@ -1,0 +1,12 @@
+br/com/fiap/report_service/infrastructure/persistence/MongoConfig.class
+br/com/fiap/report_service/application/usecase/SaveReportUseCase.class
+br/com/fiap/report_service/infrastructure/messaging/KafkaConfig.class
+br/com/fiap/report_service/adapters/dto/ReportResponseDTO.class
+br/com/fiap/report_service/infrastructure/persistence/ReportRepositoryImpl.class
+br/com/fiap/report_service/infrastructure/messaging/ReportEventConsumer.class
+br/com/fiap/report_service/infrastructure/persistence/ReportMongoRepository.class
+br/com/fiap/report_service/infrastructure/persistence/ReportDocument.class
+br/com/fiap/report_service/domain/port/ReportRepository.class
+br/com/fiap/report_service/domain/model/Report.class
+br/com/fiap/report_service/adapters/controller/ReportController.class
+br/com/fiap/report_service/ReportServiceApplication.class

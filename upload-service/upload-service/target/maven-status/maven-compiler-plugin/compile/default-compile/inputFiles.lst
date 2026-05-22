@@ -1,0 +1,12 @@
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/infrastructure/messaging/AnalysisEventProducer.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/infrastructure/messaging/KafkaProducerConfig.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/UploadServiceApplication.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/domain/entity/AnalysisStatus.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/adapters/controller/AnalysisController.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/infrastructure/persistence/entity/AnalysisJpaEntity.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/infrastructure/persistence/repository/AnalysisRepositoryImpl.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/adapters/dto/AnalysisResponseDTO.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/infrastructure/persistence/repository/AnalysisJpaRepository.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/domain/entity/Analysis.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/application/usecase/CreateAnalysisUseCase.java
+/home/ackeley/Área de trabalho/hackathon-fiap/upload-service/upload-service/src/main/java/br/com/fiap/upload_service/domain/port/AnalysisRepository.java
