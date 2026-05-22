@@ -147,7 +147,7 @@ Para remover volumes:
 docker compose down -v
 
 ## Estrutura do projeto
-
+```
 hackathon-fiap/
 ├── docker-compose.yml
 ├── .env.example
@@ -157,7 +157,7 @@ hackathon-fiap/
 ├── processing-service/
 ├── report-service/
 └── api-gateway/
-
+```
 ## Equipe
 
 Hackathon FIAP PosTech — SOAT + IADT
