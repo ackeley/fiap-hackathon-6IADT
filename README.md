@@ -141,7 +141,8 @@ Limitações conhecidas:
   curl -X POST http://localhost:8080/analyses -F "file=@diagrama.png"
 
   Resposta 201:
-```  {
+```
+  {
     "id": "uuid",
     "fileName": "diagrama.png",
     "fileType": "IMAGE",
@@ -155,7 +156,8 @@ Limitações conhecidas:
   curl http://localhost:8080/reports/uuid-aqui
 
   Resposta 200:
-```  {
+```
+  {
     "id": "mongo-id",
     "analysisId": "uuid",
     "components": ["API Gateway", "Load Balancer", "..."],
