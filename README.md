@@ -18,7 +18,7 @@ MVP de um sistema back-end capaz de:
 ## Arquitetura
 
 O sistema é composto por 4 microsserviços que se comunicam via REST e Apache Kafka:
-
+```
   Cliente (Browser)
        |
   API Gateway :8080
@@ -32,13 +32,15 @@ O sistema é composto por 4 microsserviços que se comunicam via REST e Apache K
   Kafka (diagram-report)
        |
   Report Service :8083 --> MongoDB
+```
 
 ## Microsserviços
-
+```
   api-gateway        | 8080 | Porta de entrada única e interface web
   upload-service     | 8081 | Recebe e registra diagramas          | PostgreSQL
   processing-service | 8082 | Analisa com IA Gemini                | -
   report-service     | 8083 | Armazena e serve relatórios          | MongoDB
+```
 
 ## Padrões de Arquitetura
 
@@ -139,21 +141,21 @@ Limitações conhecidas:
   curl -X POST http://localhost:8080/analyses -F "file=@diagrama.png"
 
   Resposta 201:
-  {
+```  {
     "id": "uuid",
     "fileName": "diagrama.png",
     "fileType": "IMAGE",
     "status": "RECEIVED",
     "createdAt": "2026-05-22T01:00:00"
   }
-
+```
 ### Consulta de relatório
   GET http://localhost:8080/reports/{analysisId}
 
   curl http://localhost:8080/reports/uuid-aqui
 
   Resposta 200:
-  {
+```  {
     "id": "mongo-id",
     "analysisId": "uuid",
     "components": ["API Gateway", "Load Balancer", "..."],
@@ -162,7 +164,7 @@ Limitações conhecidas:
     "summary": "Resumo da análise arquitetural",
     "createdAt": "2026-05-22T01:00:00"
   }
-
+```
 ### Status possíveis
   RECEIVED    Arquivo recebido e aguardando processamento
   PROCESSING  Sendo analisado pela IA
